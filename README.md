@@ -1,15 +1,2 @@
-# 🚀 Welcome to your new awesome project!
-
-This project has been created using **webpack-cli**, you can now run
-
-```
-npm run build
-```
-
-or
-
-```
-yarn build
-```
-
-to bundle your application
+# LetsGo
+A social media-lite immersive experience to get up and go out post-COVID era
