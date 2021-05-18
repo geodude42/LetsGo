@@ -12,7 +12,7 @@ router.post('/signup', userController.bcrypt, userController.addUser, (req, res)
 });
 // Make a POST request to signin:
 router.post('/signin', userController.login, cookieController.setSSIDCookie, (req, res) => {
-  //TODO add cookie is logged
+  console.log('USER: ', res.locals.users);
   res.status(200).send(res.locals.users);
 });
 
