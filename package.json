@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
     "bcrypt": "^5.0.1",
     "express": "^4.17.1",
     "pg": "^8.6.0",
