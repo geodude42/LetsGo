@@ -2,20 +2,6 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import NavBar from './NavBar';
 
-const styles = (theme) => ({
-  textField: {
-    width: '90%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    paddingBottom: 0,
-    marginTop: 0,
-    fontWeight: 500,
-  },
-  input: {
-    color: 'white',
-  },
-});
-
 export default function GlobalFeed() {
   function getPost() {
     fetch('https://www.boredapi.com/api/activity/')
@@ -26,9 +12,7 @@ export default function GlobalFeed() {
     <div>
       <div>
         <NavBar />
-      </div>
-      <div>
-        <Button />
+        <Button variant="contained" onClick={getPost}>Create Post!</Button>
       </div>
     </div>
   );
