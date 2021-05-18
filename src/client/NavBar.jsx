@@ -22,10 +22,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavBar(props) {
   const classes = useStyles();
-  // const history = useHistory();
+  const history = useHistory();
   const handleSignin = (e) => {
     console.log(props);
-    props.history.push('/signup');
+    history.push('/signup');
   };
 
   return (

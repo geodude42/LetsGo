@@ -1,11 +1,11 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import GlobalFeed from './GlobalFeed';
+import { BrowserRouter, Route } from 'react-router-dom';
+import routes from './containers/routes';
 
 function App() {
   return (
     <BrowserRouter>
-      <GlobalFeed />
+      <Route routes={routes} />
     </BrowserRouter>
   );
 }
