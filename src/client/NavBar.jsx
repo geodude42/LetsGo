@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -19,8 +20,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NavBar() {
+export default function NavBar(props) {
   const classes = useStyles();
+  // const history = useHistory();
+  const handleSignin = (e) => {
+    console.log(props);
+    props.history.push('/signup');
+  };
 
   return (
     <AppBar position="static">
@@ -36,7 +42,7 @@ export default function NavBar() {
         <Typography variant="h6" className={classes.title}>
           Lets Go
         </Typography>
-        <Button color="inherit">Login</Button>
+        <Button color="inherit" onClick={handleSignin}>Sign In</Button>
       </Toolbar>
     </AppBar>
   );

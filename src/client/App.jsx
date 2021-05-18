@@ -1,12 +1,12 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import GlobalFeed from './GlobalFeed';
 
 function App() {
   return (
-    <div>
-      <h1>
-        Hi react World!
-      </h1>
-    </div>
+    <BrowserRouter>
+      <GlobalFeed />
+    </BrowserRouter>
   );
 }
 
