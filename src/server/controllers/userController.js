@@ -2,6 +2,9 @@ const bcrypt = require('bcrypt');
 const db = require('../models/LetsGoModel');
 
 const userController = {};
+// set up middleware to see if email was already used to sign up:
+// TODO: userController.checkEmail
+
 // Create a userController as middleware to pass it userRouter:
 userController.addUser = (req, res, next) => {
   // safety feature: VALUES ($1, $2, $3, $4, $5) 
@@ -53,7 +56,7 @@ userController.login = (req, res, next) => {
 
   const compare = () => bcrypt.compare(inputtedPassword, res.locals.hash, (err, result) => {
     if (result) {
-      const query = `SELECT id, email, firstName FROM "public"."Users" WHERE email = '${email}';`;
+      const query = `SELECT id, email, first_name FROM "public"."Users" WHERE email = '${email}';`;
       db.query(query)
         .then((data) => {
           res.locals.users = data.rows;
