@@ -15,6 +15,7 @@ app.use(cors());
 
 // Routes
 const userRouter = require('./router/userRouter');
+const postRouter = require('./router/postRouter');
 
 app.get('/', (req, res) => {
   res.send('Houston, server is in orbit!');
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
 
 // Re-direct to route handlers:
 app.use('/user', userRouter);
+app.use('/post', postRouter);
 
 // Global error handler
 app.use((err, req, res, next) => {

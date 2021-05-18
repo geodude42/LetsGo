@@ -21,6 +21,7 @@ const config = {
       '/user': {
         target: 'http://localhost:3000/'
       },
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({

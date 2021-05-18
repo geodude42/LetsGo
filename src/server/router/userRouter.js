@@ -6,8 +6,7 @@ const userController = require('../controllers/userController');
 const cookieController = require('../controllers/cookieController');
 
 // Make a POST request to signup:
-router.post('/signup', userController.bcrypt, userController.addUser, (req, res) => {
-  // res.locals.users is the data in the query:
+router.post('/signup', userController.checkEmail, userController.bcrypt, userController.addUser, (req, res) => {
   res.status(200).send(res.locals.users);
 });
 // Make a POST request to signin:
