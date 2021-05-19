@@ -128,6 +128,7 @@ const Signup = (props) => {
               margin="normal"
               label="Password"
               name="password"
+              type="password"
               defaultValue={formInput.password.value}
               helperText={formInput.password.helperText}
               error={formInput.password.error}
@@ -169,13 +170,14 @@ const Signup = (props) => {
             Click Me
           </Button>
         </form>
+        <div>
+          <Link to="/signin">
+            <Typography variant="caption">
+              Already have an account? Sign in instead
+            </Typography>
+          </Link>
+        </div>
       </div>
-
-      <Link to="/signin">
-        <Typography variant="caption">
-          Already have an account? Sign in instead
-        </Typography>
-      </Link>
 
     </Paper>
   );

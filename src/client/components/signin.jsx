@@ -24,6 +24,9 @@ const useStyles = makeStyles({
   bigBoy: {
     display: 'flex',
     flexDirection: 'column',
+    '& > *': {
+      margin: '1vw',
+    },
   },
   btn: {
     justifySelf: 'flex-end',
@@ -117,6 +120,7 @@ const Signin = (props) => {
               margin="normal"
               label="Password"
               name="password"
+              type="password"
               defaultValue={formInput.password.value}
               helperText={formInput.password.helperText}
               error={formInput.password.error}
@@ -133,11 +137,14 @@ const Signin = (props) => {
             Click Me
           </Button>
         </form>
-        <Link to="/signup">
-          <Typography variant="caption">
-            No account? Sign up instead
-          </Typography>
-        </Link>
+        <div>
+          <Link to="/signup">
+            <Typography variant="caption">
+              No account? Sign up instead
+            </Typography>
+          </Link>
+
+        </div>
       </div>
     </Paper>
   );
