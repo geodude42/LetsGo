@@ -21,10 +21,4 @@ export default function App() {
   );
 }
 
-// export default (
-//   <BrowserRouter>
-//     <Route exact path="/" component={GlobalFeed} />
-//     <Route path="/signup" component={Signup} />
-//     <Route path="/signin" component={Signin} />
-//   </BrowserRouter>
-// );
+export default App;
