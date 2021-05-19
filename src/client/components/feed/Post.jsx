@@ -1,46 +1,43 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Paper } from '@material-ui/core/';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-  post: {
-    background: 'linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)',
-  },
-});
 
 export default function Post(props) {
-  const classes = useStyles();
-
-  console.log('props.data.activity_name: ', props.data.activity_name);
-
   return (
     <div>
-      {props.data.share ? (
-        <Paper className={classes.post} key={props.data.key}>
-          <span>
-            <h3>Activity:</h3>
-            <p>{props.data.activity}</p>
-          </span>
-          <span>
-            <h4>Particpant amount: </h4>
-            <p>{props.data.participants}</p>
-          </span>
-          <span>
-            <h4>Price: </h4>
-            <p>${props.data.price}</p>
-          </span>
-          <Button onClick={props.onClick}>Share</Button>
-        </Paper>
-      ) : (
-        <Paper className={classes.post} key={props.data.key}>
-             <span>
-            <h3>Activity:</h3>
-            <p>{props.data.activity_name}</p>
-          </span>
+      {
+        props.share
+          ? (
+          <Paper>
+            <span>
+              <h3>Activity:</h3>
+              <p>{props.data.activity}</p>
+            </span>
+            <span>
+              <h4>Particpant amount: </h4>
+              <p>{props.data.participants}</p>
+            </span>
+            <span>
+              <p>${props.data.price}</p>
+            </span>
 
-        </Paper>
+            <Button>Share</Button>
 
-      )}
+          </Paper>
+          )
+          : (
+            <Paper>
+            <span>
+              <h3>Activity:</h3>
+              <p>{props.data.activity_name}</p>
+            </span>
+            <span>
+              <h3>Likes:</h3>
+              <p>{props.data.likes_count}</p>
+            </span>
+          </Paper>
+          )
+      }
+
     </div>
   );
 }

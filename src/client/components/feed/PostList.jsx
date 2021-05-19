@@ -1,45 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Paper } from '@material-ui/core/';
-import { makeStyles } from '@material-ui/core/styles';
+import Post from './Post';
 
-const useStyles = makeStyles({
-  post: {
-    background: 'linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)',
-  },
-});
+export default function PostList(props) {
+  const [posts, setPosts] = useState([]);
 
-export default function Post(props) {
-  const classes = useStyles();
-  const [postList, setPostList] = useState([]);
-  const [html, setHtml] = useState('');
+  function getPosts() {
+    fetch('post/all')
+      .then((response) => response.json())
+      .then(data => {
+        console.log('data: ', data);
+        setPosts(data);
+      });
+  }
 
   useEffect(() => {
-    fetch('/post/all')
-      .then((response) => response.json())
-      // eslint-disable-next-line arrow-parens
-      .then((data) => {
-        console.log('Fetch all: ', data);
-
-        // const list = [];
-        // data.forEach((item, index) => {
-        //   list.push(<Post data={item} share={false} key={index} />);
-        // });
-        setPostList(data);
-        // setHtml(list);
-        // setHtml(list);
-      });
+    console.log('useEffect: ');
+    getPosts();
   }, []);
-
-  const list = [];
-
-  postList.forEach((item, index) => {
-    list.push(<Post data={item} share={false} key={index} />);
-  });
 
   return (
     <div>
-      hello!!!
-      {list}
+      {
+        posts.map((item, index) => (
+          <Post data={item} key={`post-${index}`} />
+        ))
+      }
     </div>
   );
 }

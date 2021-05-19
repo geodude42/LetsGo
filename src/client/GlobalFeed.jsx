@@ -26,7 +26,7 @@ export default function GlobalFeed() {
   }
 
   function addPost() {
-    fetch(`/post/create`, {
+    fetch('/post/create', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({idCreator: 4, activityName: post.activity}),
@@ -42,8 +42,10 @@ export default function GlobalFeed() {
       <div>
         <NavBar />
         <Button variant="contained" onClick={getPost}>Create Post!</Button>
-        {/* {state.activities} */}
-        <Post data={post} onClick={addPost}/>
+        <Post data={post} share />
+        <br />
+        <hr />
+        <br />
         <PostList />
       </div>
     </div>
