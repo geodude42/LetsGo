@@ -37,7 +37,7 @@ const useStyles = makeStyles({
 
 // Start of component
 
-const Signup = (props) => {
+const Signin = (props) => {
   // Set up form state management
   const [formInput, setFormInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
@@ -73,11 +73,12 @@ const Signup = (props) => {
         email: data.email.value,
         password: data.password.value,
       }),
-    }).then((data) => {
-      console.log(data);
-    }).catch((err) => {
-      console.log(err);
-    });
+    }).then((data) => data.json())
+      .then((data) => {
+        console.log(data);
+      }).catch((err) => {
+        console.log(err);
+      });
     // TODO: Follow up fetch with redirect to global feed or re-signup
   };
 
@@ -121,6 +122,7 @@ const Signup = (props) => {
               onChange={handleInput}
               required
             />
+          </div>
           <Button
             variant="contained"
             className={classes.btn}
@@ -135,4 +137,4 @@ const Signup = (props) => {
   );
 };
 
-export default Signup;
+export default Signin;

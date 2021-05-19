@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Paper, TextField, Typography, Button,
 } from '@material-ui/core';
@@ -169,6 +170,7 @@ const Signup = (props) => {
           </Button>
         </form>
       </div>
+      <Link to="/signin"> Click Me </Link>
     </Paper>
   );
 };
