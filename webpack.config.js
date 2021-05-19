@@ -17,7 +17,7 @@ const config = {
     open: true,
     host: 'localhost',
     contentBase: path.join(__dirname, 'dist'),
-    // publicPath: '/dist',
+    // publicPath: '/dist/',
     proxy: {
       '/user': {
         target: 'http://localhost:3000/',

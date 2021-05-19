@@ -15,6 +15,7 @@ app.use(cors());
 
 // Routes
 const userRouter = require('./router/userRouter');
+const postRouter = require('./router/postRouter');
 
 app.use(express.static(path.join(__dirname, '../../dist/')));
 
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 
 // Re-direct to route handlers:
 app.use('/user', userRouter);
+app.use('/post', postRouter);
 
 // Global error handler
 app.use((err, req, res, next) => {
@@ -33,7 +35,7 @@ app.use((err, req, res, next) => {
     message: { err: 'An error occurred' },
   };
 
-  const errorObj = Object.assign({}, defaultErr, err);
+  const errorObj = { ...defaultErr, ...err };
   return res.status(errorObj.status).json(errorObj.message);
 });
 

@@ -42,6 +42,8 @@ export default function GlobalFeed() {
         setState(newState);
       });
   }
+
+  console.log('Global Feed accessed');
   return (
     <div>
       <div>
