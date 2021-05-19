@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import { Paper, TextField, Typography } from '@material-ui/core';
 
-const Signup = (props) => {
+export default function Signup(props) {
   const [formInput, setFormInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -44,4 +44,4 @@ const Signup = (props) => {
   );
 };
 
-export default Signup;
+// export default Signup;
