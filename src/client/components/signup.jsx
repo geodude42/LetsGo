@@ -4,6 +4,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+// Styling for the page
 const useStyles = makeStyles({
   paper: {
     display: 'flex',
@@ -16,7 +17,7 @@ const useStyles = makeStyles({
   },
   container: {
     '& > *': {
-      margin: '5px',
+      margin: '1vw',
     },
   },
   btn: {
@@ -26,7 +27,10 @@ const useStyles = makeStyles({
 
 });
 
+// Start of component
+
 const Signup = (props) => {
+  // Set up form state management
   const [formInput, setFormInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -56,7 +60,7 @@ const Signup = (props) => {
   };
 
   return (
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} elevation={6}>
       <div>
         <div>
           <Typography variant="h5" className={classes.signUp}>
@@ -104,7 +108,14 @@ const Signup = (props) => {
             />
 
           </div>
-          <Button variant="contained" className={classes.btn} color="secondary"> Click Me </Button>
+          <Button
+            variant="contained"
+            className={classes.btn}
+            color="secondary"
+            onClick={handleSubmit}
+          >
+            Click Me
+          </Button>
         </form>
       </div>
     </Paper>
