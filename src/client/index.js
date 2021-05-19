@@ -4,6 +4,8 @@ import { render } from 'react-dom';
 // eslint-disable-next-line import/extensions
 import App from './App';
 
+console.log('index opened');
+
 render(
   <App />,
   document.getElementById('main'),

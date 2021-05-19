@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+/* eslint-disable max-len */
 const bcrypt = require('bcrypt');
 const db = require('../models/LetsGoModel');
 
@@ -22,7 +24,7 @@ userController.checkEmail = (req, res, next) => {
 
 // Create a userController as middleware to pass it userRouter:
 userController.addUser = (req, res, next) => {
-  // safety feature: VALUES ($1, $2, $3, $4, $5) 
+  // safety feature: VALUES ($1, $2, $3, $4, $5)
   // sanitizes i.e. saves from hackers...
   const query = `INSERT INTO "public"."Users" (first_name, last_name, email, password)
     VALUES ($1, $2, $3, $4) RETURNING *`;
