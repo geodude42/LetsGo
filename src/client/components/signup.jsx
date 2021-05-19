@@ -20,9 +20,17 @@ const useStyles = makeStyles({
       margin: '1vw',
     },
   },
+  bigBoy: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   btn: {
     justifySelf: 'flex-end',
-    margin: '2vh 0 0 38vh',
+    margin: '1vw',
+    // margin: '2vh 0 0 38vh',
+  },
+  signUp: {
+    margin: '1vw',
   },
 
 });
@@ -34,10 +42,26 @@ const Signup = (props) => {
   const [formInput, setFormInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
-      email: '',
-      password: '',
-      firstName: '',
-      lastName: '',
+      email: {
+        value: '',
+        error: false,
+        helperText: 'e.g. name@gmail.com',
+      },
+      password: {
+        value: '',
+        error: false,
+        helperText: '',
+      },
+      firstName: {
+        value: '',
+        error: false,
+        helperText: 'John',
+      },
+      lastName: {
+        value: '',
+        error: false,
+        helperText: 'Doe',
+      },
     },
   );
 
@@ -46,10 +70,24 @@ const Signup = (props) => {
   const handleSubmit = (e) => {
     console.log('submit hit');
     e.preventDefault();
-    const data = { formInput };
+    const data = { ...formInput };
     console.log(data);
 
+    // TODO: Verify incoming data
+
     // TODO: Fetch to update DB
+    fetch('/user/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: data.email.value,
+        password: data.password.value,
+        firstName: data.firstName.value,
+        lastName: data.lastName.value,
+      }),
+    }).then((data) => {
+      console.log(data);
+    });
     // TODO: Follow up fetch with redirect to global feed or re-signup
   };
 
@@ -61,7 +99,7 @@ const Signup = (props) => {
 
   return (
     <Paper className={classes.paper} elevation={6}>
-      <div>
+      <div className={classes.bigBoy}>
         <div>
           <Typography variant="h5" className={classes.signUp}>
             Sign Up
@@ -74,17 +112,22 @@ const Signup = (props) => {
               label="Email"
               name="email"
               margin="normal"
-              defaultValue={formInput.email}
-              helperText="e.g. name@gmail.com"
+              defaultValue={formInput.email.value}
+              helperText={formInput.email.helperText}
               onChange={handleInput}
+              required
+              error={formInput.email.error}
             />
             <TextField
               className={classes.text}
               margin="normal"
               label="Password"
               name="password"
-              defaultValue={formInput.password}
+              defaultValue={formInput.password.value}
+              helperText={formInput.password.helperText}
+              error={formInput.password.error}
               onChange={handleInput}
+              required
             />
 
           </div>
@@ -94,17 +137,21 @@ const Signup = (props) => {
               className={classes.text}
               label="First Name"
               name="firstName"
-              defaultValue={formInput.firstName}
-              helperText="John"
+              defaultValue={formInput.firstName.value}
+              helperText={formInput.firstName.helperText}
+              error={formInput.firstName.error}
               onChange={handleInput}
+              required
             />
             <TextField
               className={classes.text}
               label="Last Name"
               name="lastName"
-              defaultValue={formInput.lastName}
-              helperText="Doe"
+              defaultValue={formInput.lastName.value}
+              helperText={formInput.lastName.helperText}
+              error={formInput.lastName.error}
               onChange={handleInput}
+              required
             />
 
           </div>
