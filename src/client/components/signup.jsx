@@ -87,6 +87,8 @@ const Signup = (props) => {
       }),
     }).then((data) => {
       console.log(data);
+    }).catch((err) => {
+      console.log(err);
     });
     // TODO: Follow up fetch with redirect to global feed or re-signup
   };
@@ -94,7 +96,9 @@ const Signup = (props) => {
   const handleInput = (e) => {
     const field = e.target.name;
     const update = e.target.value;
-    setFormInput({ [field]: update });
+    const curr = { ...formInput };
+    curr[field].value = update;
+    setFormInput(curr);
   };
 
   return (
