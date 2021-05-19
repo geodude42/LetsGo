@@ -170,7 +170,13 @@ const Signup = (props) => {
           </Button>
         </form>
       </div>
-      <Link to="/signin"> Click Me </Link>
+
+      <Link to="/signin">
+        <Typography variant="caption">
+          Already have an account? Sign in instead
+        </Typography>
+      </Link>
+
     </Paper>
   );
 };

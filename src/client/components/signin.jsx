@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import {
   Paper, TextField, Typography, Button,
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 // Styling for the page
@@ -132,6 +133,11 @@ const Signin = (props) => {
             Click Me
           </Button>
         </form>
+        <Link to="/signup">
+          <Typography variant="caption">
+            No account? Sign up instead
+          </Typography>
+        </Link>
       </div>
     </Paper>
   );
