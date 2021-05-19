@@ -17,8 +17,10 @@ app.use(cors());
 const userRouter = require('./router/userRouter');
 const postRouter = require('./router/postRouter');
 
+app.use(express.static(path.join(__dirname, '../../dist/')));
+
 app.get('/', (req, res) => {
-  res.send('Houston, server is in orbit!');
+  res.status(200).sendFile(path.join(__dirname, '../../dist/index.html'));
 });
 
 // Re-direct to route handlers:

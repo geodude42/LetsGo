@@ -19,13 +19,13 @@ const config = {
     publicPath: '/dist',
     proxy: {
       '/user': {
-        target: 'http://localhost:3000/'
+        target: 'http://localhost:3000/',
       },
     },
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'index.html',
+      template: './src/client/index.html',
     }),
     new MiniCssExtractPlugin(),
   ],
