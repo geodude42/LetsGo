@@ -4,7 +4,7 @@ const postController = {};
 
 // Create a postController as middleware to pass it postRouter:
 postController.addPost = (req, res, next) => {
-  // safety feature: VALUES ($1, $2, $3, $4, $5) 
+  // safety feature: VALUES ($1, $2, $3, $4, $5)
   // sanitizes i.e. saves from hackers...
   const query = `INSERT INTO "public"."Posts" (id_creator, activity_name)
     VALUES ($1, $2) RETURNING *`;
@@ -66,7 +66,7 @@ postController.deletePost = (req, res, next) => {
 postController.likePost = (req, res, next) => {
   // Deconstruct column names from req.body:
   const { idPost, idUser } = req.body;
-  // safety feature: VALUES ($1, $2, $3, $4, $5) 
+  // safety feature: VALUES ($1, $2, $3, $4, $5)
   // sanitizes i.e. saves from hackers...
   const query = `INSERT INTO "public"."Likes" (id_post, id_user)
     VALUES ($1, $2) RETURNING *`;

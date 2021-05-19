@@ -14,16 +14,28 @@ export default function PostList(props) {
       });
   }
 
+  function deletePost(idPost) {
+    fetch('/post/delete', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: idPost, idCreator: 4 }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        getPosts();
+      });
+  }
+
   useEffect(() => {
     console.log('useEffect: ');
     getPosts();
-  }, []);
+  }, [props.newPostFlag]);
 
   return (
     <div>
       {
-        posts.map((item, index) => (
-          <Post data={item} key={`post-${index}`} />
+        posts.sort((a, b) => b.id - a.id).map((item, index) => (
+          <Post data={item} key={`post-${index}`} onDelete={deletePost} />
         ))
       }
     </div>

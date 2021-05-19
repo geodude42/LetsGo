@@ -1,3 +1,4 @@
+/* eslint-disable array-bracket-spacing */
 import React, { useState } from 'react';
 import { Button, Paper } from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,8 +13,8 @@ const useStyles = makeStyles({
 });
 
 export default function GlobalFeed() {
-  // eslint-disable-next-line array-bracket-spacing
   const [ post, setPost ] = useState({});
+  const [ createdPosts, setCreatedPosts ] = useState(0);
   const classes = useStyles();
 
   function getPost() {
@@ -29,11 +30,11 @@ export default function GlobalFeed() {
     fetch('/post/create', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({idCreator: 4, activityName: post.activity}),
+      body: JSON.stringify({ idCreator: 4, activityName: post.activity }),
     })
       .then(response => response.json())
       .then(data => {
-        console.log('kjsdfhkajsd');
+        setCreatedPosts(createdPosts + 1);
       });
   }
 
@@ -42,11 +43,11 @@ export default function GlobalFeed() {
       <div>
         <NavBar />
         <Button variant="contained" onClick={getPost}>Create Post!</Button>
-        <Post data={post} share />
+        <Post data={post} share onClick={addPost} />
         <br />
         <hr />
         <br />
-        <PostList />
+        <PostList newPostFlag={createdPosts} />
       </div>
     </div>
   );
