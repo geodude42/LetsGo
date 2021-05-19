@@ -16,7 +16,8 @@ const config = {
   devServer: {
     open: true,
     host: 'localhost',
-    publicPath: '/dist',
+    contentBase: path.join(__dirname, 'dist'),
+    // publicPath: '/dist/',
     proxy: {
       '/user': {
         target: 'http://localhost:3000/',

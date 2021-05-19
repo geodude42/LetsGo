@@ -5,9 +5,11 @@ import NavBar from './NavBar';
 export default function GlobalFeed() {
   function getPost() {
     fetch('https://www.boredapi.com/api/activity/')
-      .then(response => response.json())
-      .then(data => console.log(data));
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   }
+
+  console.log('Global Feed accessed');
   return (
     <div>
       <div>
