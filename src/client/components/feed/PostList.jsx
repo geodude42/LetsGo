@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Button, Paper } from '@material-ui/core/';
 import Post from './Post';
 
 export default function PostList(props) {
   const [posts, setPosts] = useState([]);
+  const { user, setUser } = useContext(AuthContext);
 
   function getPosts() {
     fetch('post/all')
