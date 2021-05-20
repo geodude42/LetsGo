@@ -1,26 +1,33 @@
-import React from 'react';
-import { Button, Paper, IconButton } from '@material-ui/core/';
+import React, { useContext } from 'react';
+import { Button, Paper, IconButton, Typography } from '@material-ui/core/';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import AuthContext from '../contexts/Auth-context';
 
 export default function Post(props) {
+  const { user, setUser } = useContext(AuthContext);
+
   const deleteHandler = () => {
     props.onDelete(props.data.id);
   };
+
+  const likeHandler = () => {
+    props.onLike(props.data.id);
+  }
   return (
     <div>
       {props.share ? (
         <Paper>
           <span>
-            <h3>Activity:</h3>
-            <p>{props.data.activity}</p>
+            <Typography variant='h5'>Activity:</Typography>
+            <Typography>{props.data.activity}</Typography>
           </span>
           <span>
-            <h4>Particpant amount: </h4>
-            <p>{props.data.participants}</p>
+            <Typography variant='h6'>Particpant amount: </Typography>
+            <Typography>{props.data.participants}</Typography>
           </span>
           <span>
-            <p>${props.data.price}</p>
+            <Typography>${props.data.price}</Typography>
           </span>
 
           <Button onClick={props.onClick} variant='contained'>
@@ -30,19 +37,28 @@ export default function Post(props) {
       ) : (
         <Paper>
           <span>
-            <h3>Activity:</h3>
-            <p>{props.data.activity_name}</p>
+            <Typography variant='h5'>Activity:</Typography>
+            <Typography>{props.data.activity_name}</Typography>
           </span>
           <span>
-            <IconButton aria-label='favorite'>
-              <FavoriteBorderIcon />
-            </IconButton>
+            {props.isLiked ?
+              (<IconButton onClick={likeHandler} aria-label='favorite'>
+                <FavoriteIcon/>
+              </IconButton>)
+              :
+              (<IconButton onClick={likeHandler} aria-label='favorite'>
+                <FavoriteBorderIcon/>
+              </IconButton>)
+              }
+
             {props.data.likes_count}
           </span>
           <br />
-          <Button onClick={deleteHandler} variant='contained'>
-            Delete
-          </Button>
+          {user && props.data.id_creator === user.id ? (
+            <Button onClick={deleteHandler} variant='contained'>
+              Delete
+            </Button>
+          ) : ('')}
         </Paper>
       )}
     </div>

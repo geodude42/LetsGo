@@ -46,6 +46,24 @@ postController.getPosts = (req, res, next) => {
     }));
 };
 
+postController.getUserLikes = (req, res, next) => {
+  const { id, idCreator } = req.body;
+  const query = `SELECT p.id, p.id_creator, p.activity_name, COUNT(*) AS likes_count
+    FROM "public"."Posts" p
+    LEFT JOIN "public"."Likes" l ON l.id_post = p.id
+    GROUP BY 1`;
+  db.query(query)
+    .then((data) => {
+      res.locals.posts = data.rows;
+      return next();
+    })
+    .catch((err) => next({
+      log: 'error in getPosts controller',
+      status: 500,
+      message: { err },
+    }));
+};
+
 postController.deletePost = (req, res, next) => {
   const { id, idCreator } = req.body;
 
