@@ -15,6 +15,7 @@ const useStyles = makeStyles({
     minHeight: '60vh',
     margin: 'auto',
     flexWrap: 'wrap',
+    backgroundImage: 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
   },
   container: {
     '& > *': {
@@ -128,6 +129,7 @@ const Signup = (props) => {
               margin="normal"
               label="Password"
               name="password"
+              type="password"
               defaultValue={formInput.password.value}
               helperText={formInput.password.helperText}
               error={formInput.password.error}
@@ -169,13 +171,14 @@ const Signup = (props) => {
             Click Me
           </Button>
         </form>
+        <div>
+          <Link to="/signin">
+            <Typography variant="caption">
+              Already have an account? Sign in instead
+            </Typography>
+          </Link>
+        </div>
       </div>
-
-      <Link to="/signin">
-        <Typography variant="caption">
-          Already have an account? Sign in instead
-        </Typography>
-      </Link>
 
     </Paper>
   );

@@ -1,9 +1,10 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useContext } from 'react';
 import {
   Paper, TextField, Typography, Button,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import AuthContext from './contexts/Auth-context';
 
 // Styling for the page
 const useStyles = makeStyles({
@@ -15,6 +16,7 @@ const useStyles = makeStyles({
     minHeight: '60vh',
     margin: 'auto',
     flexWrap: 'wrap',
+    backgroundImage: 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
   },
   container: {
     '& > *': {
@@ -24,6 +26,9 @@ const useStyles = makeStyles({
   bigBoy: {
     display: 'flex',
     flexDirection: 'column',
+    '& > *': {
+      margin: '1vw',
+    },
   },
   btn: {
     justifySelf: 'flex-end',
@@ -39,6 +44,8 @@ const useStyles = makeStyles({
 // Start of component
 
 const Signin = (props) => {
+  const history = useHistory();
+  const { user, setUser } = useContext(AuthContext);
   // Set up form state management
   const [formInput, setFormInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
@@ -76,7 +83,12 @@ const Signin = (props) => {
       }),
     }).then((data) => data.json())
       .then((data) => {
-        console.log(data);
+        console.log('SIGNIN ', data);
+        setUser({ name: data[0].first_name, email: data[0].email, id: data[0].id });
+
+        history.push({
+          pathname: `/`,
+        });
       }).catch((err) => {
         console.log(err);
       });
@@ -117,6 +129,7 @@ const Signin = (props) => {
               margin="normal"
               label="Password"
               name="password"
+              type="password"
               defaultValue={formInput.password.value}
               helperText={formInput.password.helperText}
               error={formInput.password.error}
@@ -133,11 +146,14 @@ const Signin = (props) => {
             Click Me
           </Button>
         </form>
-        <Link to="/signup">
-          <Typography variant="caption">
-            No account? Sign up instead
-          </Typography>
-        </Link>
+        <div>
+          <Link to="/signup">
+            <Typography variant="caption">
+              No account? Sign up instead
+            </Typography>
+          </Link>
+
+        </div>
       </div>
     </Paper>
   );

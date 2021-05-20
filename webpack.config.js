@@ -22,6 +22,9 @@ const config = {
       '/user': {
         target: 'http://localhost:3000/',
       },
+      '/post': {
+        target: 'http://localhost:3000/',
+      },
     },
   },
   plugins: [

@@ -17,14 +17,21 @@ router.post('/like', postController.likePost, (req, res) => {
   res.status(200).send(res.locals.likes);
 });
 // Make a POST request to create like:
-router.delete('/unlike', postController.unlikePost, (req, res) => {
+router.patch('/unlike', postController.unlikePost, (req, res) => {
   res.status(200).send(res.locals.likes);
 });
 // Make a GET request to get one post:
 
 // Make a GET request to get all posts:
+router.post('/allUserLikes', postController.getUserLikes, (req, res) => {
+  res.status(200).send(res.locals.likes);
+});
+// Make a GET request to get userLikes:
 router.delete('/delete', postController.deletePost, (req, res) => {
   res.status(200).send(res.locals.deletePost);
 });
-
+// Make a GET request to get userLikes:
+router.post('/likesUser', postController.getLikesUser, (req, res) => {
+  res.status(200).send(res.locals.likesUser);
+});
 module.exports = router;
