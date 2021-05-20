@@ -15,6 +15,7 @@ const useStyles = makeStyles({
     minHeight: '60vh',
     margin: 'auto',
     flexWrap: 'wrap',
+    backgroundImage: 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
   },
   container: {
     '& > *': {
