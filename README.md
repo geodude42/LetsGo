@@ -62,3 +62,13 @@ To run tests, run the following command
 - [@kaijosefevans](https://github.com/kaijosefevans)
 - [@jonocr](https://github.com/jonocr)
 - [@xkevinpark](https://github.com/xkevinpark)  
+
+
+## Contributing
+
+Contributions are always welcome!
+
+See `contributing.md` for ways to get started.
+
+
+  
