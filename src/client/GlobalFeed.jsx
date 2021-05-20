@@ -2,11 +2,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Button, Paper } from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
 import NavBar from './NavBar';
 import Post from './components/feed/Post';
 import PostList from './components/feed/PostList';
 import AuthContext from './components/contexts/Auth-context';
-import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles({
   post: {
@@ -19,7 +19,7 @@ export default function GlobalFeed() {
   const { user, setUser } = useContext(AuthContext);
   const [ post, setPost ] = useState({});
   const [ createdPosts, setCreatedPosts ] = useState(0);
-  
+
   const classes = useStyles();
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function GlobalFeed() {
         <br />
         <hr />
         <br />
-        <PostList newPostFlag={createdPosts} />
+        <PostList newPostFlag={createdPosts} className={classes.post} />
       </div>
     </div>
   );

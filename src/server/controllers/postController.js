@@ -30,7 +30,7 @@ postController.addPost = (req, res, next) => {
 };
 
 postController.getPosts = (req, res, next) => {
-  const query = `SELECT p.id, p.id_creator, p.activity_name, COUNT(*) AS likes_count
+  const query = `SELECT p.id, p.id_creator, p.activity_name, COUNT(l.id_post) AS likes_count
     FROM "public"."Posts" p
     LEFT JOIN "public"."Likes" l ON l.id_post = p.id
     GROUP BY 1`;
@@ -47,18 +47,18 @@ postController.getPosts = (req, res, next) => {
 };
 
 postController.getUserLikes = (req, res, next) => {
-  const { id, idCreator } = req.body;
-  const query = `SELECT p.id, p.id_creator, p.activity_name, COUNT(*) AS likes_count
-    FROM "public"."Posts" p
-    LEFT JOIN "public"."Likes" l ON l.id_post = p.id
-    GROUP BY 1`;
+  const { idUser } = req.body;
+  const query = `SELECT id_post
+    FROM "public"."Likes"
+    where id_user = ${idUser}`;
   db.query(query)
     .then((data) => {
-      res.locals.posts = data.rows;
+      console.log('USERLIKE: ', data);
+      res.locals.likes = data.rows;
       return next();
     })
     .catch((err) => next({
-      log: 'error in getPosts controller',
+      log: 'error in getUserLikes controller',
       status: 500,
       message: { err },
     }));
@@ -120,6 +120,24 @@ postController.unlikePost = (req, res, next) => {
     }));
 };
 
+// get all user likes for each post
+postController.getLikesUser = (req, res, next) => {
+  const { idPost } = req.body;
+
+  const query = `SELECT u.first_name, u.last_name
+  FROM "public"."Users" u
+  INNER JOIN "public"."Likes" l ON l.id_user =  u.id AND l.id_post = ${idPost}`;
+  db.query(query)
+    .then((data) => {
+      res.locals.likesUser = data.rows;
+      next();
+    })
+    .catch((err) => next({
+      log: 'error in getLikesUser controller',
+      status: 500,
+      message: { err },
+    }));
+};
 /*
 postController.updatePost = (req, res, next) => {
   unless we add commenting or additional text from user about these posts

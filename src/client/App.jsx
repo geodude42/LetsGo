@@ -9,7 +9,6 @@ import AuthContext from './components/contexts/Auth-context';
 export default function App() {
   const [user, setUser] = useState(null);
   const providerUser = useMemo(() => ({ user, setUser }), [user, setUser]);
-  console.log('Made it to App');
   return (
     <AuthContext.Provider value={providerUser}>
       <BrowserRouter>

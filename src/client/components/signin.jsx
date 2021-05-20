@@ -83,7 +83,7 @@ const Signin = (props) => {
       }),
     }).then((data) => data.json())
       .then((data) => {
-        console.log('SIGNIN ',data);
+        console.log('SIGNIN ', data);
         setUser({ name: data[0].first_name, email: data[0].email, id: data[0].id });
 
         history.push({
